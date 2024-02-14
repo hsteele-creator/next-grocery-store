@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Signupform() {
   const router = useRouter();
@@ -68,7 +69,9 @@ export default function Signupform() {
 
           <p className="text-sm">
             Already have an account?{" "}
-            <span className="hover:cursor-pointer text-[#009478]">Login</span>
+            <Link href={"/login"}>
+              <span className="hover:cursor-pointer text-[#009478]">Login</span>
+            </Link>
           </p>
         </form>
       </div>

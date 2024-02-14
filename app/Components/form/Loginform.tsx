@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
+import Link from "next/link";
 
 export default function Loginform() {
   const [cookies, setCookie, removeCookie] = useCookies([
@@ -65,8 +66,12 @@ export default function Loginform() {
           ></input>
 
           <p className="text-sm">
-            Don't have an account yet?{" "}
-            <span className="hover:cursor-pointer text-[#009478]">Signup</span>
+            You do not have an account yet?{" "}
+            <Link href={"/"}>
+              <span className="hover:cursor-pointer text-[#009478]">
+                Signup
+              </span>
+            </Link>
           </p>
         </form>
       </div>
