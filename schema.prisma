@@ -14,4 +14,23 @@ model User {
   password String
   createdAt DateTime @default(now())
   updateUt DateTime @updatedAt
+  cartItems CartItem[]
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name String
+  description String
+  price String
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  name String
+  description String
+  price String
+
+
+  userId Int @unique
+  user User @relation(fields : [userId], references: [id])
 }

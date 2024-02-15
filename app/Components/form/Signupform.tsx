@@ -69,7 +69,7 @@ export default function Signupform() {
 
           <p className="text-sm">
             Already have an account?{" "}
-            <Link href={"/login"}>
+            <Link href={"/sign-in"}>
               <span className="hover:cursor-pointer text-[#009478]">Login</span>
             </Link>
           </p>

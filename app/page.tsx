@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Loginform from "./Components/form/Loginform";
-import Signupform from "./Components/form/Signupform";
+import HeroSection from "./Components/form/HeroSection";
 
 export default function Home() {
-  const [status, setStatus] = useState("sign-up");
-  return <main>{status === "login" ? <Loginform /> : <Signupform />}</main>;
+  return (
+    <main>
+      <HeroSection />
+    </main>
+  );
 }
