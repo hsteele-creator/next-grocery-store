@@ -9,7 +9,11 @@ export default function Signupform() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [error, setError] = useState<null | string>(null);
+
+  console.log(firstName, lastName)
 
   const submitForm = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -17,7 +21,7 @@ export default function Signupform() {
       const response = await fetch("/api/user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ firstName, lastName, email, password }),
       });
 
       setPassword("");
@@ -33,6 +37,26 @@ export default function Signupform() {
       <div className="w-2/3 max-w-[450px] py-16 px-12 bg-white rounded-md shadow-sm flex flex-col justify-center">
         <form className="flex flex-col gap-3" onSubmit={submitForm}>
           <h1 className="text-2xl text-center font-semibold my-4">Signup</h1>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="First Name"
+              name="firstName"
+              className="border-2 p-3 rounded-md w-1/2"
+              required
+              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
+            ></input>
+            <input
+              type="text"
+              placeholder="Last Name"
+              name="lastName"
+              className="border-2 p-3 rounded-md w-1/2"
+              required
+              onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
+            ></input>
+          </div>
           <input
             type="email"
             placeholder="Enter your email"
