@@ -5,7 +5,7 @@ export default function HeroSection() {
     <div className="bg-[#d2efe1] w-full flex items-center justify-between bg-[url(/images/fruit-overlay.svg)] bg-cover bg-blend-color-burn py-12 lg:py-0">
       <div className="w-1/2 px-4 lg:px-32">
         <h1 className="text-3xl lg:text-5xl font-semibold leading-tight">
-          Don't miss our daily amazing deals
+          Don&apos;t miss our daily amazing deals
         </h1>
         <p className="text-gray-500 my-4 lg:my-10">
           Shop our fresh products today

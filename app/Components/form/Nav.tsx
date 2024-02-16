@@ -8,7 +8,7 @@ export default function Nav() {
         <Image src="/images/grocery.png" alt="logo" width={30} height={0} />
         <div>
           <h3 className="text-[#3BB77E] text-sm lg:text-normal lg:font-bold mb-[-2px]">
-            Harry's Fresh
+            Harry&apos;s Fresh
           </h3>
           <p className="text-gray-500 font-light text-sm">Grocery</p>
         </div>
