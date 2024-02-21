@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type CategoryProps = {
   name: string;
@@ -14,23 +15,27 @@ export default function Category({
   backgroundColor,
 }: CategoryProps) {
   return (
-    <div
-      style={{ backgroundColor: backgroundColor }}
-      className="p-6 rounded-sm cursor-pointer hover:shadow-md mx-2 my-2"
-    >
-      <div>
-        <Image
-          style={{ mixBlendMode: "multiply", margin: "0 auto" }}
-          width={100}
-          height={100}
-          alt="category image"
-          src={image}
-        />
+    <Link href={`/products/${name}`}>
+      <div
+        style={{ backgroundColor: backgroundColor }}
+        className="p-6 rounded-sm cursor-pointer hover:shadow-md mx-2 my-2"
+      >
+        <div>
+          <Image
+            style={{ mixBlendMode: "multiply", margin: "0 auto" }}
+            width={100}
+            height={100}
+            alt="category image"
+            src={image}
+          />
+        </div>
+        <div>
+          <p className="text-center">{name}</p>
+          <p className="text-center text-xs text-gray-500">
+            {numProducts} items
+          </p>
+        </div>
       </div>
-      <div>
-        <p className="text-center">{name}</p>
-        <p className="text-center text-xs text-gray-500">{numProducts} items</p>
-      </div>
-    </div>
+    </Link>
   );
 }

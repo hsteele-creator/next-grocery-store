@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -9,12 +10,16 @@ export default function HeroSection() {
         </h1>
         <p className="text-gray-500 my-4 lg:my-10">Sign up to get 20% off</p>
         <div className="flex gap-1 lg:gap-4">
-          <button className="bg-white text-[#3BB77E] py-2 w-24 text-xs rounded-md border border-[#3BB77E] shadow-sm">
-           Shop Now
-          </button>
-          <button className="bg-[#3BB77E] text-white p-2 w-24 text-xs rounded-md shadow-sm">
-            Sign Up
-          </button>
+          <Link href="/products">
+            <button className="bg-white text-[#3BB77E] py-2 w-24 text-xs rounded-sm shadow-sm">
+              Shop Now
+            </button>
+          </Link>
+          <Link href="/sign-up">
+            <button className="bg-[#3BB77E] text-white p-2 w-24 text-xs rounded-sm shadow-sm">
+              Sign Up
+            </button>
+          </Link>
         </div>
       </div>
       <div className="w-1/2 h-full flex  justify-end">

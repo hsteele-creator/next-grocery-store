@@ -36,6 +36,7 @@ model CartItem {
   description String
   price Float
   image String
+  quantity Int
 
 
   userId Int @unique

@@ -38,7 +38,7 @@ export default function Loginform() {
     }
   };
   return (
-    <div className="bg-[#009478] w-[100vw] h-[100vh] flex items-center justify-center">
+    <div className="bg-[#3BB77E] w-[100vw] h-[100vh] flex items-center justify-center">
       <div className="w-2/3 max-w-[450px] py-16 px-12 bg-white rounded-md shadow-sm flex flex-col justify-center">
         <form className="flex flex-col gap-3" onSubmit={submitForm}>
           <h1 className="text-2xl text-center font-semibold my-4">Login</h1>
@@ -62,13 +62,13 @@ export default function Loginform() {
           <input
             type="submit"
             required
-            className="hover:cursor-pointer my-4 bg-[#009478] w-full py-3 rounded-md shadow-sm text-white"
+            className="hover:cursor-pointer my-4 bg-[#3BB77E] w-full py-3 rounded-md shadow-sm text-white"
           ></input>
 
           <p className="text-sm">
             You do not have an account yet?{" "}
             <Link href={"/"}>
-              <span className="hover:cursor-pointer text-[#009478]">
+              <span className="hover:cursor-pointer text-[#3BB77E]">
                 Signup
               </span>
             </Link>
