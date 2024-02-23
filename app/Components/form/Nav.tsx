@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 
-export default function Nav() {
+
+export default async function Nav() {
+
   return (
     <div className="px-4 lg:px-32 bg-white flex justify-between items-center border-b-[0.5px]">
       {/* left logo section */}

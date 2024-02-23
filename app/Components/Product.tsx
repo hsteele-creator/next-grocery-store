@@ -2,16 +2,52 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 
 type ProductProps = {
   id: number;
   name: string;
   price: number;
   image: string;
+  description: string;
 };
 
-export default function Product({ id, name, price, image }: ProductProps) {
+export default function Product({
+  id,
+  name,
+  price,
+  image,
+  description,
+}: ProductProps) {
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [quantity, setQuantity] = useState(0);
+  console.log(cookies);
+
+  const addToCart = async () => {
+    try {
+      if (quantity !== 0) {
+        const response = await fetch("/api/add-to-cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id,
+            name,
+            price,
+            image,
+            quantity,
+            token: cookies.authToken,
+            user_id: cookies.id,
+          }),
+        });
+        const data = await response.json();
+        console.log(data);
+        setQuantity(0)
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <div className="border-[1px] shadow-sm m-2">
       {/* image section */}
@@ -54,7 +90,13 @@ export default function Product({ id, name, price, image }: ProductProps) {
             </button>
           </div>
         </div>
-        <button className=" flex items-center bg-[#3BB77E] bg-opacity-20 my-2 p-1 rounded-sm">
+        <button
+          disabled={quantity === 0}
+          onClick={() => addToCart()}
+          className={`flex items-center bg-[#3BB77E] bg-opacity-20 my-2 p-1 rounded-sm ${
+            quantity === 0 ? "bg-opacity-10" : "bg-opacity-30"
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -69,9 +111,7 @@ export default function Product({ id, name, price, image }: ProductProps) {
               d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
             />
           </svg>
-          <p className="text-sm w-full text-[#3BB77E]">
-            Add to Cart
-          </p>
+          <p className="text-sm w-full text-[#3BB77E]">Add to Cart</p>
         </button>
       </div>
     </div>

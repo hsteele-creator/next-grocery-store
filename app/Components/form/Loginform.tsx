@@ -19,22 +19,26 @@ export default function Loginform() {
   console.log(cookies);
 
   const submitForm = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const response = await fetch("/api/sign-in", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      e.preventDefault();
+      const response = await fetch("/api/sign-in", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const results = await response.json();
-    console.log(results);
+      const results = await response.json();
+      console.log(results);
 
-    if (results.error) {
-      setError(results.error);
-    } else {
-      setCookie("authToken", results.token);
-      setCookie("email", results.email);
-      setCookie("id", results.id);
+      if (results.error) {
+        setError(results.error);
+      } else {
+        setCookie("authToken", results.token);
+        setCookie("email", results.email);
+        setCookie("id", results.id);
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
   return (
