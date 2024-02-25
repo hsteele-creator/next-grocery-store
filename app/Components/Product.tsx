@@ -9,7 +9,7 @@ type ProductProps = {
   name: string;
   price: number;
   image: string;
-  description: string;
+  description?: string;
 };
 
 export default function Product({
