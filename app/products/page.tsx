@@ -7,7 +7,7 @@ export default async function Products() {
 
   return (
     <div>
-      <div className="flex justify-between items-center p-4">
+      <div className="flex flex-col lg:flex justify-between items-center p-4">
         <h1 className="text-center text-4xl font-medium pb-6">
           All Products
         </h1>
