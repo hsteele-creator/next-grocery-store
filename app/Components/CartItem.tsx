@@ -1,7 +1,9 @@
 "use client";
 
+import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type CartItemProps = {
   id: number;
@@ -21,6 +23,7 @@ export default function CartItem({
   quantity,
 }: CartItemProps) {
   const [itemQuantity, setItemQuantity] = useState(quantity);
+  const router = useRouter();
 
   const updateCartQty = async (method: string) => {
     try {
@@ -29,8 +32,8 @@ export default function CartItem({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, method }),
       });
+      revalidatePath("/cart");
       const data = await response.json();
-      console.log(data);
     } catch (e) {
       console.error(e);
     }
@@ -73,7 +76,10 @@ export default function CartItem({
         <p className="text-xs text-gray-500">Each</p>
         <p className="font-semibold">{price}</p>
       </div>
-      <p className="underline text-red-500 text-sm hover:cursor-pointer" onClick={() => deleteCartItem()}>
+      <p
+        className="underline text-red-500 text-sm hover:cursor-pointer"
+        onClick={() => deleteCartItem()}
+      >
         Remove
       </p>
     </div>

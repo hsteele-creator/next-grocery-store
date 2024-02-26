@@ -3,6 +3,7 @@
 import { useCookies } from "react-cookie";
 import CartItem from "../Components/CartItem";
 import { useState, useEffect } from "react";
+import { revalidatePath } from "next/cache";
 
 export default function Cart() {
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -18,15 +19,15 @@ export default function Cart() {
       }[]
   >([]);
 
-  const getCartItems = async () => {
-    const response = await fetch(`/api/get-cart-items?id=${cookies.id}`);
-    const data = await response.json();
-    setCartItems(data);
-  };
-
   useEffect(() => {
+    const getCartItems = async () => {
+      const response = await fetch(`/api/get-cart-items?id=${cookies.id}`);
+      const data = await response.json();
+      setCartItems(data);
+    };
+
     getCartItems();
-  }, []);
+  }, [cartItems, cookies.id]);
 
   console.log(cartItems ? cartItems : null);
 
