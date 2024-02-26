@@ -17,7 +17,7 @@ export default function Cart() {
 
   useEffect(() => {
     getCartItems();
-  }, [cartItems]);
+  });
 
   return (
     <div className="w-full h-full">
