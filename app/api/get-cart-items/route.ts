@@ -4,7 +4,6 @@ import { type NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-
     // get id from url params
     const id = Number(req.nextUrl.searchParams.get("id"));
 
@@ -16,10 +15,12 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    console.log(id)
+    console.log(id);
 
     return NextResponse.json(cartItems);
   } catch (e) {
     return NextResponse.json({ e });
   }
 }
+
+export async function POST(req: Request) {}
