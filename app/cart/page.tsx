@@ -28,9 +28,11 @@ export default function Cart() {
     getCartItems();
   }, []);
 
+  console.log(cartItems ? cartItems : null)
+
   return (
     <div className="w-full h-full">
-      {cartItems?.map(
+      {cartItems && cartItems.map(
         (c: {
           id: number;
           image: string;
