@@ -24,6 +24,7 @@ export default function Cart() {
       {cartItems?.map((c: any) => {
         return (
           <CartItem
+            key={c.name}
             id={c.id}
             image={c.image}
             name={c.name}
