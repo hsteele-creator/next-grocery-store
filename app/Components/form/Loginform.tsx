@@ -10,6 +10,8 @@ export default function Loginform() {
     "authToken",
     "email",
     "id",
+    "firstName",
+    "lastName",
   ]);
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -36,6 +38,9 @@ export default function Loginform() {
         setCookie("authToken", results.token);
         setCookie("email", results.email);
         setCookie("id", results.id);
+        setCookie("firstName", results.firstName);
+        setCookie("lastName", results.lastName);
+        console.log("success")
       }
     } catch (e) {
       console.error(e);

@@ -12,9 +12,11 @@ export async function GET(req: NextRequest) {
     const cartItems = await prisma.cartItem.findMany({
       where: { userId: id },
       orderBy: {
-        id : 'asc'
-      }
+        id: "asc",
+      },
     });
+
+    console.log(id)
 
     return NextResponse.json(cartItems);
   } catch (e) {

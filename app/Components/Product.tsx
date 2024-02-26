@@ -12,6 +12,7 @@ type ProductProps = {
   description?: string;
 };
 
+
 export default function Product({
   id,
   name,
@@ -41,7 +42,7 @@ export default function Product({
         });
         const data = await response.json();
         console.log(data);
-        setQuantity(0)
+        setQuantity(0);
       }
     } catch (e) {
       console.error(e);
