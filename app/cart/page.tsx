@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 export default function Cart() {
   const [cookies, setCookie, removeCookie] = useCookies();
   const [cartItems, setCartItems] = useState<
-    | null
+    | []
     | {
         id: number;
         image: string;
@@ -16,7 +16,7 @@ export default function Cart() {
         quantity: number;
         name: string;
       }[]
-  >(null);
+  >([]);
 
   const getCartItems = async () => {
     const response = await fetch(`/api/get-cart-items?id=${cookies.id}`);
@@ -28,32 +28,33 @@ export default function Cart() {
     getCartItems();
   }, []);
 
-  console.log(cartItems ? cartItems : null)
+  console.log(cartItems ? cartItems : null);
 
   return (
     <div className="w-full h-full">
-      {cartItems && cartItems.map(
-        (c: {
-          id: number;
-          image: string;
-          price: number;
-          userId: number;
-          quantity: number;
-          name: string;
-        }) => {
-          return (
-            <CartItem
-              key={c.name}
-              id={c.id}
-              image={c.image}
-              name={c.name}
-              price={c.price}
-              userId={c.userId}
-              quantity={c.quantity}
-            />
-          );
-        }
-      )}
+      {cartItems &&
+        cartItems.map(
+          (c: {
+            id: number;
+            image: string;
+            price: number;
+            userId: number;
+            quantity: number;
+            name: string;
+          }) => {
+            return (
+              <CartItem
+                key={c.name}
+                id={c.id}
+                image={c.image}
+                name={c.name}
+                price={c.price}
+                userId={c.userId}
+                quantity={c.quantity}
+              />
+            );
+          }
+        )}
     </div>
   );
 }
