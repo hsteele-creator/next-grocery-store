@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function Cart() {
   const [cookies, setCookie, removeCookie] = useCookies();
-  const [cartItems, setCartItems] = useState<any>();
+  const [cartItems, setCartItems] = useState<null | {id: number, image : string, price : number, userId : number, quantity : number}[]>(null);
 
   const getCartItems = async () => {
     const response = await fetch(`/api/get-cart-items?id=${cookies.id}`);
