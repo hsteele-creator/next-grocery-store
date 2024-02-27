@@ -44,6 +44,8 @@ export default function CartItem({
       const response = await fetch(`/api/delete-from-cart?id=${id}`, {
         method: "DELETE",
       });
+
+      
     } catch (e) {
       console.error(e);
     }

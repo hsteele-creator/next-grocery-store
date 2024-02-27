@@ -1,7 +1,6 @@
 import BreadCrumbMenu from "@/app/Components/BreadCrumbMenu";
 import Product from "@/app/Components/Product";
 import { prisma } from "@/prisma";
-import { Suspense } from "react";
 
 type CategoryProductProps = {
   params: { category: string };
@@ -27,7 +26,7 @@ export default async function CategoryProducts({
         </h1>
         <BreadCrumbMenu />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {products[0]?.products.map((p) => {
           return (
             <Product

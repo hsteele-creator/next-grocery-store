@@ -1,7 +1,31 @@
+"use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
+import { useEffect, useState } from "react";
 
-export default async function Nav() {
+export default function Nav() {
+  const [cookies, setCookies] = useCookies<any>([]);
+  const [cartItemsLength, setCartItemsLength] = useState(0);
+  const [isClient, setIsClient] = useState(false);
+  console.log(cartItemsLength);
+  const router = useRouter();
+
+  const getCartItems = async () => {
+    const response = await fetch(`/api/get-cart-items?id=${cookies.id}`);
+    const data = await response.json();
+    setCartItemsLength(data.length);
+  };
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    getCartItems();
+  }, [cartItemsLength]);
 
   return (
     <div className="px-4 lg:px-32 bg-white flex justify-between items-center border-b-[0.5px]">
@@ -18,7 +42,7 @@ export default async function Nav() {
 
       <div className="flex gap-3 items-center">
         {/* cart section */}
-        <div className="flex items-center gap-1 hover:cursor-pointer p-1 lg:p-2 rounded-full hover:bg-gray-100">
+        <div className=" flex items-center gap-1 hover:cursor-pointer p-1 lg:p-2 rounded-full hover:bg-gray-100">
           {" "}
           <div className="relative">
             <svg
@@ -36,7 +60,7 @@ export default async function Nav() {
               />
             </svg>
             <div className="flex items-center justify-center bg-[#3BB77E]  w-3 h-3 rounded-full top-[-2px] right-[-1px] absolute">
-              <p className="text-[10px] text-white">1</p>
+              <p className="text-[10px] text-white">{cartItemsLength}</p>
             </div>
           </div>
           <div>
@@ -76,7 +100,11 @@ export default async function Nav() {
             />
           </svg>
 
-          <p className="lg:font-medium">Harry Steele</p>
+          <div className="flex gap-1">
+            <p>{isClient && cookies.firstName}</p>
+            <p>{isClient && cookies.lastName}</p>
+          </div>
+
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
