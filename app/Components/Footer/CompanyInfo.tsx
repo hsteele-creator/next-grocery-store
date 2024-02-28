@@ -1,5 +1,4 @@
 import Image from "next/image";
-import LogoSection from "../LogoSections";
 
 export default function CompanyInfo() {
   return (

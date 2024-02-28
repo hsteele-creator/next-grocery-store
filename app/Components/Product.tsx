@@ -2,9 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 
 type ProductProps = {
@@ -24,11 +22,7 @@ export default function Product({
 }: ProductProps) {
   const [cookies, setCookie, removeCookie] = useCookies();
   const [quantity, setQuantity] = useState(0);
-  const { push } = useRouter();
 
-  if (!cookies.authToken) {
-    push("/sign-up");
-  }
 
   const addToCart = async () => {
     try {
