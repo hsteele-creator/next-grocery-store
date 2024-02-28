@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Quicksand } from "next/font/google";
 import "./globals.css";
 import Nav from "./Components/form/Nav";
-import { Suspense } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+
 const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

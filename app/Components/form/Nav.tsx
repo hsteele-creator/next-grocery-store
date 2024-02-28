@@ -1,17 +1,16 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
+import LogoSection from "../LogoSections";
 
 export default function Nav() {
   const [cookies, setCookies] = useCookies<any>([]);
   const [cartItemsLength, setCartItemsLength] = useState(0);
   const [isClient, setIsClient] = useState(false);
   console.log(cartItemsLength);
-  const router = useRouter();
+  const { push } = useRouter();
 
   const getCartItems = async () => {
     const response = await fetch(`/api/get-cart-items?id=${cookies.id}`);
@@ -27,18 +26,14 @@ export default function Nav() {
     getCartItems();
   }, [cartItemsLength]);
 
+  if (!cookies.authToken) {
+    push("/sign-up");
+  }
+
   return (
     <div className="px-4 lg:px-32 bg-white flex justify-between items-center border-b-[0.5px]">
       {/* left logo section */}
-      <div className="flex py-4 gap-2 items-center hover:cursor-pointer">
-        <Image src="/images/grocery.png" alt="logo" width={30} height={0} />
-        <div>
-          <h3 className="text-[#3BB77E] text-sm lg:text-normal lg:font-bold mb-[-2px]">
-            Harry&apos;s Fresh
-          </h3>
-          <p className="text-gray-500 font-light text-sm">Grocery</p>
-        </div>
-      </div>
+      <LogoSection />
 
       <div className="flex gap-3 items-center">
         {/* cart section */}

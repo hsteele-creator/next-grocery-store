@@ -1,7 +1,10 @@
 "use client";
 
+import { revalidatePath } from "next/cache";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 
 type ProductProps = {
@@ -12,7 +15,6 @@ type ProductProps = {
   description?: string;
 };
 
-
 export default function Product({
   id,
   name,
@@ -22,7 +24,11 @@ export default function Product({
 }: ProductProps) {
   const [cookies, setCookie, removeCookie] = useCookies();
   const [quantity, setQuantity] = useState(0);
-  console.log(cookies);
+  const { push } = useRouter();
+
+  if (!cookies.authToken) {
+    push("/sign-up");
+  }
 
   const addToCart = async () => {
     try {
@@ -41,6 +47,7 @@ export default function Product({
           }),
         });
         const data = await response.json();
+        revalidatePath("/");
         console.log(data);
         setQuantity(0);
       }
