@@ -26,9 +26,11 @@ export default function Nav() {
     getCartItems();
   }, [cartItemsLength]);
 
-  if (!cookies.authToken) {
-    push("/sign-up");
-  }
+  useEffect(() => {
+    if (!cookies.authToken) {
+      push("/sign-up");
+    }
+  }, []);
 
   return (
     <div className="px-4 lg:px-32 bg-white flex justify-between items-center border-b-[0.5px]">
