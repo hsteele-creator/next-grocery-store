@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Promotions() {
   return (
-    <div className="w-full flex flex-col lg:flex-row gap-4 my-12">
+    <div className="w-full flex flex-col lg:flex-row gap-4 my-8">
       <div className="flex items-center justify-evenly w-full lg:w-1/2 p-4 bg-[#FFF5E1] bg-[url(/images/fruit-overlay.svg)] bg-cover bg-blend-color-burn">
         <div>
           {" "}

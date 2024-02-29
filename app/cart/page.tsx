@@ -29,8 +29,6 @@ export default function Cart() {
     getCartItems();
   }, [cartItems, cookies.id]);
 
-  console.log(cartItems ? cartItems : null);
-
   return (
     <div className="w-full h-full">
       {cartItems &&

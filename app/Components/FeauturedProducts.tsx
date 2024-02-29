@@ -5,10 +5,9 @@ export default async function FeaturedProducts() {
   const products = await prisma.product.findMany({
     take: 12,
   });
-  console.log(products);
   return (
     <div>
-      <h1 className="text-center lg:text-left text-2xl font-medium pb-6">
+      <h1 className="text-center lg:text-left text-2xl font-medium">
         Featured Products
       </h1>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">

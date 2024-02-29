@@ -23,7 +23,6 @@ export default function Product({
   const [cookies, setCookie, removeCookie] = useCookies();
   const [quantity, setQuantity] = useState(0);
 
-
   const addToCart = async () => {
     try {
       if (quantity !== 0) {
@@ -41,8 +40,6 @@ export default function Product({
           }),
         });
         const data = await response.json();
-        revalidatePath("/");
-        console.log(data);
         setQuantity(0);
       }
     } catch (e) {

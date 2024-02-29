@@ -13,12 +13,13 @@ export default function Loginform() {
     "firstName",
     "lastName",
   ]);
-  const router = useRouter();
+  const { push } = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<null | string>(null);
 
-  console.log(cookies);
+  console.log(cookies)
+
 
   const submitForm = async (e: React.SyntheticEvent) => {
     try {
@@ -40,7 +41,8 @@ export default function Loginform() {
         setCookie("id", results.id);
         setCookie("firstName", results.firstName);
         setCookie("lastName", results.lastName);
-        console.log("success")
+        console.log("success");
+        push("/");
       }
     } catch (e) {
       console.error(e);
