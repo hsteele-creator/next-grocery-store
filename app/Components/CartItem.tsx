@@ -12,6 +12,7 @@ type CartItemProps = {
   price: number;
   userId: number;
   quantity: number;
+  cartItemId: number;
 };
 
 export default function CartItem({
@@ -21,6 +22,7 @@ export default function CartItem({
   price,
   userId,
   quantity,
+  cartItemId,
 }: CartItemProps) {
   const [itemQuantity, setItemQuantity] = useState(quantity);
   const router = useRouter();
@@ -30,7 +32,7 @@ export default function CartItem({
       const response = await fetch("/api/update-cart-quantity", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, method }),
+        body: JSON.stringify({ cartItemId, method }),
       });
       revalidatePath("/cart");
       const data = await response.json();
@@ -41,11 +43,12 @@ export default function CartItem({
 
   const deleteCartItem = async () => {
     try {
-      const response = await fetch(`/api/delete-from-cart?id=${id}`, {
-        method: "DELETE",
-      });
-
-      
+      const response = await fetch(
+        `/api/delete-from-cart?cartItemId=${cartItemId}`,
+        {
+          method: "DELETE",
+        }
+      );
     } catch (e) {
       console.error(e);
     }

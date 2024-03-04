@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 import Link from "next/link";
 
@@ -18,8 +18,7 @@ export default function Loginform() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<null | string>(null);
 
-  console.log(cookies)
-
+  console.log(cookies);
 
   const submitForm = async (e: React.SyntheticEvent) => {
     try {

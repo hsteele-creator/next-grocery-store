@@ -39,7 +39,7 @@ export default function Product({
             user_id: cookies.id,
           }),
         });
-        const data = await response.json();
+        // const data = await response.json();
         setQuantity(0);
       }
     } catch (e) {

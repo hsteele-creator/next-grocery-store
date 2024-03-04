@@ -1,5 +1,6 @@
 import BreadCrumbMenu from "@/app/Components/BreadCrumbMenu";
 import Product from "@/app/Components/Product";
+import Nav from "@/app/Components/form/Nav";
 import { prisma } from "@/prisma";
 
 type CategoryProductProps = {
@@ -11,15 +12,16 @@ export default async function CategoryProducts({
 }: CategoryProductProps) {
   const products = await prisma.category.findMany({
     where: {
-      name: params.category,
+      name: params.category.toLowerCase(),
     },
     include: {
       products: true,
     },
   });
-  console.log(products)
+  console.log(products, params, "hello")
   return (
     <div>
+      <Nav />
       <div className="flex flex-col lg:flex justify-between items-center p-4">
         <h1 className="text-center text-4xl font-medium pb-6">
           {params.category}
@@ -35,7 +37,7 @@ export default async function CategoryProducts({
               name={p.name}
               price={p.price}
               image={p.image}
-              description={p.description}
+              // description={p.description}
             />
           );
         })}

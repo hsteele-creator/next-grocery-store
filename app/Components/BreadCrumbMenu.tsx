@@ -18,61 +18,61 @@ export default function BreadCrumbMenu() {
       </Link>
       <Link
         className={
-          pathname === "/products/Meat"
+          pathname === "/products/meat"
             ? "text-[#3BB77E]"
             : "text-gray-500 text-sm hover:text-[#3BB77E]"
         }
-        href="/products/Meat"
+        href="/products/meat"
       >
         Meat
       </Link>
       <Link
         className={
-          pathname === "/products/Drinks"
+          pathname === "/products/drinks"
             ? "text-[#3BB77E]"
             : "text-gray-500 text-sm hover:text-[#3BB77E]"
         }
-        href="/products/Drinks"
+        href="/products/drinks"
       >
         Drinks
       </Link>
       <Link
         className={
-          pathname === "/products/Produce"
+          pathname === "/products/produce"
             ? "text-[#3BB77E]"
             : "text-gray-500 text-sm hover:text-[#3BB77E]"
         }
-        href="/products/Produce"
+        href="/products/produce"
       >
         Produce
       </Link>
       <Link
         className={
-          pathname === "/products/Dairy"
+          pathname === "/products/dairy"
             ? "text-[#3BB77E]"
             : "text-gray-500 text-sm hover:text-[#3BB77E]"
         }
-        href="/products/Dairy"
+        href="/products/dairy"
       >
         Dairy
       </Link>
       <Link
         className={
-          pathname === "/products/Snacks"
+          pathname === "/products/snacks"
             ? "text-[#3BB77E]"
             : "text-gray-500 text-sm hover:text-[#3BB77E]"
         }
-        href="/products/Snacks"
+        href="/products/snacks"
       >
         Snacks
       </Link>
       <Link
         className={
-          pathname === "/products/Baker"
+          pathname === "/products/bakery"
             ? "text-[#3BB77E]"
             : "text-gray-500 text-sm hover:text-[#3BB77E]"
         }
-        href="/products/Bakery"
+        href="/products/bakery"
       >
         Bakery
       </Link>

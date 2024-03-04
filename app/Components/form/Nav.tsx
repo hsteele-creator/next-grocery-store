@@ -5,10 +5,10 @@ import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import LogoSection from "../LogoSections";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
 
 export default function Nav() {
   const [cookies, setCookies, removeCookie] = useCookies<any>([]);
+  const [authToken, setAuthToken] = useState(cookies.authToken);
   const [cartItemsLength, setCartItemsLength] = useState(0);
   const [isClient, setIsClient] = useState(false);
   const [open, setOpen] = useState(false);
@@ -21,12 +21,9 @@ export default function Nav() {
   };
 
   useEffect(() => {
+    getCartItems();
     setIsClient(true);
   }, []);
-
-  useEffect(() => {
-    getCartItems();
-  }, [cartItemsLength]);
 
   useEffect(() => {
     if (!cookies.authToken) {
@@ -34,15 +31,20 @@ export default function Nav() {
     }
   }, [open]);
 
+  useEffect(() => {
+    if (cookies.authToken !== authToken) {
+      setAuthToken(cookies.authToken);
+    }
+  }, [cookies.authToken]);
+
   const Logout = () => {
     removeCookie("authToken");
     removeCookie("email");
     removeCookie("firstName");
     removeCookie("lastName");
-    removeCookie("cart");
+    removeCookie("cart")
 
-    
-    router.push("/sign-up")
+    router.push("/sign-up");
   };
 
   return (
@@ -137,8 +139,13 @@ export default function Nav() {
               d="m19.5 8.25-7.5 7.5-7.5-7.5"
             />
           </svg>
-          {open && (
-            <p onClick={Logout} className="absolute top-6 right-0 p-[4px] shadow-lg rounded-md bg-gray-100">Logout</p>
+          {open && cookies.authToken && (
+            <p
+              onClick={Logout}
+              className="absolute bg-gray-200 top-10 right-0 p-[4px] shadow-xl w-full text-center"
+            >
+              Logout
+            </p>
           )}
         </div>
       </div>

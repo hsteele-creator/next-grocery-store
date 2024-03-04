@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import CartItem from "../Components/CartItem";
 import { useState, useEffect } from "react";
 import { revalidatePath } from "next/cache";
+import Nav from "../Components/form/Nav";
 
 export default function Cart() {
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -16,6 +17,7 @@ export default function Cart() {
         userId: number;
         quantity: number;
         name: string;
+        cartItemId: number;
       }[]
   >([]);
 
@@ -31,6 +33,7 @@ export default function Cart() {
 
   return (
     <div className="w-full h-full">
+      <Nav />
       {cartItems &&
         cartItems.map(
           (c: {
@@ -40,6 +43,7 @@ export default function Cart() {
             userId: number;
             quantity: number;
             name: string;
+            cartItemId: number;
           }) => {
             return (
               <CartItem
@@ -50,6 +54,7 @@ export default function Cart() {
                 price={c.price}
                 userId={c.userId}
                 quantity={c.quantity}
+                cartItemId={c.cartItemId}
               />
             );
           }
