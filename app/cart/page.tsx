@@ -29,7 +29,7 @@ export default function Cart() {
     };
 
     getCartItems();
-  }, [cartItems, cookies.id]);
+  }, []);
 
   return (
     <div className="w-full h-full">

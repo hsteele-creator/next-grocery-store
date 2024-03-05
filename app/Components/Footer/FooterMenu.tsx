@@ -1,12 +1,31 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 
 export default function FooterMenu() {
+  const [cookies, setCookies, removeCookie] = useCookies<any>([]);
+  const router = useRouter();
+
+  const Logout = () => {
+    removeCookie("authToken");
+    removeCookie("email");
+    removeCookie("firstName");
+    removeCookie("lastName");
+    removeCookie("cart");
+
+    router.push("/sign-up");
+  };
+
   return (
     <div className="flex items-center justify-between w-1/4">
       <div>
         <h1 className="font-medium">User</h1>
         <div className="text-xs text-gray-500 flex flex-col justify-evenly h-24">
-          <p>Log Out</p>
+          <p className="hover:cursor-pointer" onClick={() => Logout()}>
+            Log Out
+          </p>
           <Link href="/sign-in">
             <p>Sign In</p>
           </Link>
@@ -21,22 +40,22 @@ export default function FooterMenu() {
       <div>
         <h1 className="font-medium">Products</h1>
         <div className="text-xs text-gray-500 flex flex-col justify-evenly h-24">
-          <Link href="/products/Meat">
+          <Link href="/products/meat">
             <p>Meat</p>
           </Link>
-          <Link href="/products/Dairy">
+          <Link href="/products/dairy">
             <p>Dairy</p>
           </Link>
-          <Link href="/products/Drinks">
+          <Link href="/products/drinks">
             <p>Drinks</p>
           </Link>
-          <Link href="/products/Snacks">
+          <Link href="/products/snacks">
             <p>Snacks</p>
           </Link>
-          <Link href="/products/Produce">
+          <Link href="/products/produce">
             <p>Produce</p>
           </Link>
-          <Link href="/products/Bakery">
+          <Link href="/products/bakery">
             <p>Bakery</p>
           </Link>
         </div>
