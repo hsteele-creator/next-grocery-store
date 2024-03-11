@@ -55,6 +55,8 @@ export default function Cart() {
                 userId={c.userId}
                 quantity={c.quantity}
                 cartItemId={c.cartItemId}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
             );
           }

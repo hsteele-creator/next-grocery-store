@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useRouter } from "next/navigation";
 
 type CartItemProps = {
@@ -13,6 +13,29 @@ type CartItemProps = {
   userId: number;
   quantity: number;
   cartItemId: number;
+  cartItems: {
+    id: number;
+    name: string;
+    price: number;
+    userId: number;
+    quantity: number;
+    cartItemId: number;
+    image: string;
+  }[];
+  setCartItems: Dispatch<
+    SetStateAction<
+      | []
+      | {
+          id: number;
+          image: string;
+          price: number;
+          userId: number;
+          quantity: number;
+          name: string;
+          cartItemId: number;
+        }[]
+    >
+  >;
 };
 
 export default function CartItem({
@@ -23,9 +46,13 @@ export default function CartItem({
   userId,
   quantity,
   cartItemId,
+  cartItems,
+  setCartItems,
 }: CartItemProps) {
   const [itemQuantity, setItemQuantity] = useState(quantity);
   const router = useRouter();
+
+  console.log(cartItems);
 
   const updateCartQty = async (method: string) => {
     try {
@@ -34,8 +61,28 @@ export default function CartItem({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cartItemId, method }),
       });
-      revalidatePath("/cart");
-      const data = await response.json();
+
+      const cart = cartItems.map((item) => {
+        console.log(method);
+
+        if (method === "add") {
+          if (item.name === name) {
+            const newItem = { ...item, quantity: item.quantity + 1 };
+            return newItem;
+          } else {
+            return item;
+          }
+        } else {
+          if (item.name === name) {
+            const newItem = { ...item, quantity: item.quantity - 1 };
+            return newItem;
+          } else {
+            return item;
+          }
+        }
+      });
+
+      setCartItems(cart);
     } catch (e) {
       console.error(e);
     }
@@ -49,6 +96,7 @@ export default function CartItem({
           method: "DELETE",
         }
       );
+      setCartItems((cartItems) => cartItems.filter((i) => i.name !== name));
     } catch (e) {
       console.error(e);
     }

@@ -40,6 +40,7 @@ export default function Product({
           }),
         });
         // const data = await response.json();
+        
         setQuantity(0);
       }
     } catch (e) {
